@@ -1,0 +1,24 @@
+# Everything needed to run the notebook, the app, the pipeline and the tests with pip.
+# (With uv, `uv sync` installs the same set from pyproject.toml / uv.lock.)
+-r requirements.txt
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+mlflow>=3.0
+dvc>=3.50
+pandera>=0.20
+xgboost>=2.1
+lightgbm>=4.5
+catboost>=1.2.7
+shap>=0.46
+lime>=0.2.0.1
+matplotlib>=3.9
+seaborn>=0.13
+scipy>=1.13
+evidently>=0.7.10
+httpx>=0.27
+pytest>=8.0
+ruff>=0.6
+jupyter>=1.1
+nbconvert>=7.16
+ipykernel>=6.29

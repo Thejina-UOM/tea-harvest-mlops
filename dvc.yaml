@@ -1,0 +1,43 @@
+stages:
+  prepare:
+    cmd: uv run python -m src.data
+    deps:
+      - src/data.py
+      - src/features.py
+      - data/raw/sri_lanka_tea_tri_gov_ds.csv
+      - data/production/labelled.csv
+    params:
+      - data
+    outs:
+      - data/processed/train.csv
+      - data/processed/eval.csv
+      - data/processed/future.csv
+
+  train:
+    cmd: uv run python -m src.train
+    deps:
+      - src/train.py
+      - src/model.py
+      - data/processed/train.csv
+    params:
+      - model
+    outs:
+      - models/model.joblib
+      - run_info.json:
+          cache: false
+
+  evaluate:
+    cmd: uv run python -m src.evaluate
+    deps:
+      - src/evaluate.py
+      - src/metrics.py
+      - models/model.joblib
+      - data/processed/eval.csv
+    params:
+      - evaluate.threshold
+    metrics:
+      - eval_metrics.json:
+          cache: false
+    plots:
+      - plots/feature_importance.png:
+          cache: false

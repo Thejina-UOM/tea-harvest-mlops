@@ -1,0 +1,11 @@
+# Streamlit front end (also used by Streamlit Community Cloud and Dockerfile.frontend).
+# scikit-learn and interpret-core are pinned to the versions the saved model was trained with.
+streamlit>=1.40
+plotly>=5.24
+pandas>=2.2
+numpy>=1.26
+scikit-learn==1.9.1
+interpret-core==0.7.8
+joblib>=1.4
+requests>=2.32
+pyyaml>=6.0

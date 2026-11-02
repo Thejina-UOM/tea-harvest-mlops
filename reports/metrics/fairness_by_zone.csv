@@ -1,0 +1,4 @@
+zone,test rows,ready rate,Accuracy,F1,Recall (ready),Recall (not ready)
+low-grown,176,0.8295,1.0,1.0,1.0,1.0
+mid-grown,177,0.5254,0.9774,0.9783,0.9677,0.9881
+high-grown,123,0.439,0.9919,0.9907,0.9815,1.0

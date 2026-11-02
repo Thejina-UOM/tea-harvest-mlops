@@ -1,0 +1,31 @@
+data:
+  raw: data/raw/sri_lanka_tea_tri_gov_ds.csv
+  production: data/production/labelled.csv
+  processed_dir: data/processed
+  history_until_year: 2021   # 2001-2021 = history I train/evaluate on; 2022-2024 = "future" for the replayer
+  val_frac: 0.2              # random (stratified) share of history held out to evaluate the first model
+  holdout_frac: 0.3          # newest share of labelled production data used to judge retrained models
+  seed: 42
+
+model:
+  name: tea-harvest-readiness   # name in the MLflow model registry
+  experiment: tea-harvest
+  # Explainable Boosting Machine settings = the best configuration from my notebook search
+  ebm:
+    learning_rate: 0.005
+    max_bins: 512
+    interactions: 15
+    min_samples_leaf: 8
+    max_leaves: 3
+    smoothing_rounds: 100
+    outer_bags: 8
+    random_state: 42
+
+evaluate:
+  threshold: 0.5            # probability above which a month is called "ready"
+  gate_metric: f1           # metric a challenger must reach to replace the champion
+  gate_min_delta: 0.0
+
+monitor:
+  drift_share_threshold: 0.3   # retrain when at least 30% of features have drifted...
+  min_labelled_rows: 300       # ...and we have enough labelled production rows to learn from

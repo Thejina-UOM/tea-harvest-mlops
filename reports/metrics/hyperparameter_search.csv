@@ -1,0 +1,8 @@
+model,best CV F1,search time (s),best params
+Logistic Regression,0.8497,2.4,"{'class_weight': None, 'C': 0.1274}"
+Decision Tree,0.9931,0.6,"{'min_samples_leaf': 2, 'max_depth': 10, 'criterion': 'gini', 'ccp_alpha': 0.001}"
+Random Forest,0.9945,37.9,"{'n_estimators': 600, 'min_samples_leaf': 2, 'max_features': 0.8, 'max_depth': 14, 'class_weight': 'balanced'}"
+XGBoost,0.9938,14.3,"{'subsample': 1.0, 'reg_lambda': 1, 'n_estimators': 800, 'min_child_weight': 3, 'max_depth': 6, 'learning_rate': 0.1, 'colsample_bytree': 0.7}"
+LightGBM,0.9967,13.6,"{'reg_lambda': 0.0, 'num_leaves': 15, 'n_estimators': 600, 'min_child_samples': 50, 'learning_rate': 0.05, 'colsample_bytree': 1.0}"
+CatBoost,0.996,14.4,"{'learning_rate': 0.03, 'l2_leaf_reg': 10, 'iterations': 300, 'depth': 8}"
+EBM (new),0.993,189.7,"{'smoothing_rounds': 100, 'min_samples_leaf': 8, 'max_leaves': 3, 'max_bins': 512, 'learning_rate': 0.005, 'interactions': 15}"

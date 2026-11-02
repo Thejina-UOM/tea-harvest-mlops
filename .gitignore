@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+# MLflow local store (DagsHub is the real tracking server)
+mlruns/
+# Secrets
+.env
+.dvc/config.local
+# Monitoring outputs
+monitoring/current.csv
+monitoring/drift_report.html
+monitoring/drift_summary.json
+gate_report.md
+# OS
+.DS_Store
+Thumbs.db
+
+# DVC pipeline outputs (DVC also writes its own .gitignore files)
+/data/processed/
+/models/model.joblib

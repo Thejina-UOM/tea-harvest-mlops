@@ -1,0 +1,17 @@
+[
+  {
+    "year":2024,
+    "month":12,
+    "region":"Nuwara Eliya",
+    "elevation_m":1868,
+    "zone":"high-grown",
+    "rainfall_mm":144.77,
+    "temperature_c":14.76,
+    "temperature_c_raw":22.47,
+    "humidity_percent":89.59,
+    "soil_moisture_percent":81.0,
+    "ndvi_index":0.64,
+    "season":"Maha",
+    "harvest_ready":1
+  }
+]

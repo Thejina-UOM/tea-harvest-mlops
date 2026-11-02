@@ -1,0 +1,13 @@
+.venv
+.git
+.dvc/cache
+data/processed
+data/production
+mlruns
+plots
+tests
+monitoring
+replayer
+notebooks
+docs
+*.md

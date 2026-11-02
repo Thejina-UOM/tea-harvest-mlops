@@ -1,0 +1,98 @@
+{
+  "model": "Explainable Boosting Machine (interpret.glassbox.ExplainableBoostingClassifier)",
+  "author": "Thejina",
+  "task": "Binary classification of monthly tea harvest readiness (1 = ready)",
+  "features": [
+    "elevation_m",
+    "month",
+    "rainfall_mm",
+    "temperature_c",
+    "humidity_percent",
+    "soil_moisture_percent"
+  ],
+  "hyperparameters": {
+    "interactions": 15,
+    "learning_rate": 0.005,
+    "max_bins": 512,
+    "max_leaves": 3,
+    "min_samples_leaf": 8,
+    "outer_bags": 8,
+    "random_state": 42,
+    "smoothing_rounds": 100
+  },
+  "threshold": 0.5,
+  "splits": {
+    "rows": {
+      "train": 2216,
+      "validation": 475,
+      "test": 476
+    },
+    "share": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "ready rate": {
+      "train": 0.616,
+      "validation": 0.615,
+      "test": 0.616
+    }
+  },
+  "test_metrics": {
+    "Accuracy": 0.9895,
+    "Balanced acc.": 0.9904,
+    "Precision": 0.9966,
+    "Recall (ready)": 0.9863,
+    "Recall (not ready)": 0.9945,
+    "F1": 0.9914,
+    "ROC-AUC": 0.9996,
+    "PR-AUC": 0.9997,
+    "MCC": 0.978,
+    "Brier": 0.0091
+  },
+  "validation_checks": {
+    "time_split_2001_2019_vs_2020_2024": {
+      "Accuracy": 0.9848,
+      "Balanced acc.": 0.9852,
+      "Precision": 0.9931,
+      "Recall (ready)": 0.9839,
+      "Recall (not ready)": 0.9865,
+      "F1": 0.9885,
+      "ROC-AUC": 0.9989,
+      "PR-AUC": 0.9994,
+      "MCC": 0.9663,
+      "Brier": 0.0125
+    },
+    "leave_one_region_out": {
+      "mean_accuracy": 0.9842,
+      "min_accuracy": 0.9549,
+      "per_region": {
+        "Matara": 0.9896,
+        "Galle": 0.9931,
+        "Ratnapura": 0.9549,
+        "Kegalle": 0.9722,
+        "Kandy": 0.9549,
+        "Badulla": 1.0,
+        "Uda Pussellawa": 0.9861,
+        "Ella": 1.0,
+        "Dimbula": 0.9826,
+        "Haputale": 1.0,
+        "Nuwara Eliya": 0.993
+      }
+    },
+    "learning_curve_final_gap_f1": 0.0077,
+    "permutation_test": {
+      "true_auc": 0.9898,
+      "shuffled_auc_mean": 0.5009,
+      "p_value": 0.0476
+    },
+    "depth3_tree_on_weather_val_accuracy": 0.9558
+  },
+  "library_versions": {
+    "scikit-learn": "1.9.1",
+    "interpret": "0.7.8",
+    "python": "3.13.18"
+  },
+  "trained_on_rows": 2216,
+  "intended_use": "Decision support for estate managers / TRI advisers; not a substitute for field inspection."
+}

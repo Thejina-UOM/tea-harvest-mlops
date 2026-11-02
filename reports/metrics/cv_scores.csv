@@ -1,0 +1,9 @@
+model,CV F1 mean,CV F1 std,folds
+Logistic Regression,0.8497,0.0131,5
+Decision Tree,0.9931,0.0042,5
+Random Forest,0.9945,0.0042,5
+XGBoost,0.9938,0.003,5
+LightGBM,0.9967,0.0022,5
+CatBoost,0.996,0.0031,3
+Stacking (RF+XGB+Cat),0.9931,0.0042,3
+EBM (new),0.9931,0.0054,3

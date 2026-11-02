@@ -1,0 +1,5 @@
+model,Accuracy,F1,ROC-AUC,Balanced acc.
+Persistence (ready next = ready now),0.7242,0.7911,0.6937,0.6937
+Logistic Regression,0.7288,0.7995,0.7811,0.687
+XGBoost,0.7149,0.7768,0.756,0.6992
+EBM (new),0.6626,0.7384,0.7044,0.636

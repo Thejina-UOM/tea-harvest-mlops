@@ -1,0 +1,113 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: uv run python -m src.data
+    deps:
+    - path: data/production/labelled.csv
+      hash: md5
+      md5: f042f652441240a64c9426a75dc414d2
+      size: 118
+    - path: data/raw/sri_lanka_tea_tri_gov_ds.csv
+      hash: md5
+      md5: 8919321356cab0ba61d88819f919f64b
+      size: 228754
+    - path: src/data.py
+      hash: md5
+      md5: 634d0e6d0b2fd7c7c8708953a15d724d
+      size: 5292
+    - path: src/features.py
+      hash: md5
+      md5: c33194a8381a075fda4b262a2d82ec2c
+      size: 7364
+    params:
+      params.yaml:
+        data:
+          raw: data/raw/sri_lanka_tea_tri_gov_ds.csv
+          production: data/production/labelled.csv
+          processed_dir: data/processed
+          history_until_year: 2021
+          val_frac: 0.2
+          holdout_frac: 0.3
+          seed: 42
+    outs:
+    - path: data/processed/eval.csv
+      hash: md5
+      md5: 7b82d33482b168a696cf061b811df32f
+      size: 25062
+    - path: data/processed/future.csv
+      hash: md5
+      md5: 3578bbd18f4517427a0a2920caae8762
+      size: 17973
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 260c8a5dd79e135cf928a7be4844e743
+      size: 99766
+  train:
+    cmd: uv run python -m src.train
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 260c8a5dd79e135cf928a7be4844e743
+      size: 99766
+    - path: src/model.py
+      hash: md5
+      md5: e570df44cd0d73afde00f927dadc14bf
+      size: 1078
+    - path: src/train.py
+      hash: md5
+      md5: 3d86a2e48b68526929d6e6bf998f9593
+      size: 2451
+    params:
+      params.yaml:
+        model:
+          name: tea-harvest-readiness
+          experiment: tea-harvest
+          ebm:
+            learning_rate: 0.005
+            max_bins: 512
+            interactions: 15
+            min_samples_leaf: 8
+            max_leaves: 3
+            smoothing_rounds: 100
+            outer_bags: 8
+            random_state: 42
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: 2f28b3fc4ba3da917bce9e8dc803a957
+      size: 1959334
+    - path: run_info.json
+      hash: md5
+      md5: 117ae3a45d91dd944e82d21647e16ecb
+      size: 112
+  evaluate:
+    cmd: uv run python -m src.evaluate
+    deps:
+    - path: data/processed/eval.csv
+      hash: md5
+      md5: 7b82d33482b168a696cf061b811df32f
+      size: 25062
+    - path: models/model.joblib
+      hash: md5
+      md5: 2f28b3fc4ba3da917bce9e8dc803a957
+      size: 1959334
+    - path: src/evaluate.py
+      hash: md5
+      md5: b8639743211cf2a3cae09865546957d2
+      size: 2003
+    - path: src/metrics.py
+      hash: md5
+      md5: cc522594c689ec4cd115f02602dc056b
+      size: 1203
+    params:
+      params.yaml:
+        evaluate.threshold: 0.5
+    outs:
+    - path: eval_metrics.json
+      hash: md5
+      md5: b1f3c3421adfde279c078b6ef4caa0c2
+      size: 314
+    - path: plots/feature_importance.png
+      hash: md5
+      md5: 8876f182bacc5f3e9ed37ee9f9e80de9
+      size: 50942

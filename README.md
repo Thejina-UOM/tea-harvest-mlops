@@ -64,3 +64,5 @@ Re-run the analysis: open `notebooks/Tea_Harvest_Readiness_EBM.ipynb` and *Resta
 8. After the demo: `az group delete --name rg-tea-mlops --yes`.
 
 Free alternative for the app only: Streamlit Community Cloud → main file `frontend/streamlit_app.py`.
+
+CI demo: pipeline checked on every pull request.
